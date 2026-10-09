@@ -52,6 +52,7 @@ iframe{flex:1;width:100%;border:0;background:#fff}
   <h1>Luft-Tec · enne ja pärast</h1>
   <label>Leht
     <select id="page">
+      <optgroup label="Teenused">
       <option value="">Avaleht</option>
       <option value="ventilatsioonisusteemide-paigaldus/">Ventilatsioonisüsteemide paigaldus</option>
       <option value="ventilatsioonisusteemide-puhastus/">Ventilatsioonisüsteemide puhastus</option>
@@ -59,6 +60,15 @@ iframe{flex:1;width:100%;border:0;background:#fff}
       <option value="kkk/">KKK</option>
       <option value="teenused/">Teenused</option>
       <option value="kookide-rasvakanalite-puhastus/">Köökide rasvakanalite puhastus</option>
+      </optgroup>
+      <optgroup label="E-pood">
+      <option value="heiko-ohksoojuspumbad/">HEIKO: milline mudel valida? (uus leht)</option>
+      <option value="pood/">E-pood</option>
+      <option value="product-category/ohksoojuspumbad/">Õhksoojuspumbad (kategooria)</option>
+      <option value="product-category/mobiilne-konditsioneer/">Mobiilne konditsioneer (kategooria)</option>
+      <option value="product/seinale-paigaldatav-ohksoojuspump-rosa-black-4/">Toode: HEIKO ROSA Black 2,6 kW</option>
+      <option value="product/seinale-paigaldatav-ohksoojuspump-rosa-black-3/">Toode: ROSA 4,8 kW (nimi parandatud)</option>
+      </optgroup>
     </select>
   </label>
   <label><input type="checkbox" id="sync" checked> Keri koos</label>
@@ -88,6 +98,9 @@ iframe{flex:1;width:100%;border:0;background:#fff}
   var sync = document.getElementById('sync');
   var ignoreUntil = {old: 0, new: 0};
   var lastY = 0;
+  var NEW = {'heiko-ohksoojuspumbad/': true};
+  var want = {old: null, new: null};
+  var EMPTY = '<!doctype html><meta charset="utf-8"><body style="font:16px/1.5 system-ui,sans-serif;padding:40px 24px;color:#3a4250;background:#f6f7f9"><h2 style="margin:0 0 8px">Seda lehte praegu ei ole</h2><p style="margin:0">See on uus leht. Vaata paremalt, milline see oleks.</p></body>';
   var narrow = window.matchMedia('(max-width: 900px)');
 
   function src(side, key){ return base + (side === 'old' ? 'enne/' : '') + key + 'index.html'; }
@@ -101,9 +114,16 @@ iframe{flex:1;width:100%;border:0;background:#fff}
   }
   function other(side){ return side === 'old' ? 'new' : 'old'; }
 
+  function setSrc(side, key){
+    want[side] = key;
+    var f = frames[side];
+    if (side === 'old' && NEW[key]) { f.removeAttribute('src'); f.srcdoc = EMPTY; }
+    else { f.removeAttribute('srcdoc'); f.src = src(side, key); }
+  }
+
   function load(key){
-    frames.old.src = src('old', key);
-    frames.new.src = src('new', key);
+    setSrc('old', key);
+    setSrc('new', key);
     select.value = key;
     history.replaceState(null, '', '?leht=' + encodeURIComponent(key));
   }
@@ -126,10 +146,9 @@ iframe{flex:1;width:100%;border:0;background:#fff}
       follow(other(side));
     }, {passive: true});
     // a link clicked inside one frame: open the same page in the other one
-    var k = keyOf(side), ko = keyOf(other(side));
-    if (k !== null && ko !== null && k !== ko) {
-      frames[other(side)].src = src(other(side), k);
-    }
+    var k = keyOf(side);
+    if (k !== null) want[side] = k;
+    if (k !== null && want[other(side)] !== k) setSrc(other(side), k);
     if (k !== null) {
       if ([].some.call(select.options, function(o){ return o.value === k; })) select.value = k;
       history.replaceState(null, '', '?leht=' + encodeURIComponent(k));
