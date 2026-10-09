@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Luft-Tec muudatuste ülevaade</title>
+<meta name="description" content="Ettepanek: väikesed muudatused luft-tec.ee lehtedel, et teenuseotsingutest tuleks Google'ist rohkem külastajaid.">
+<style>
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --text:#1d2430; --muted:#5b6574; --line:#dde2e8;
+  --accent:#1f3a5f; --accent-soft:#e7eef7; --good:#1c7c54; --old:#9a3b3b;
+  --serp-title:#1a0dab; --serp-url:#4d5156; --serp-text:#474747;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12161c; --card:#1b2129; --text:#e6eaf0; --muted:#9aa5b4; --line:#2c3440;
+    --accent:#8fb3e0; --accent-soft:#1f2b3a; --good:#5cc79a; --old:#e08a8a;
+    --serp-title:#8ab4f8; --serp-url:#bdc1c6; --serp-text:#c5c9ce;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:1.9rem;line-height:1.25;margin:0 0 8px}
+h2{font-size:1.35rem;margin:44px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:24px 0 8px}
+p,li{max-width:70ch}
+.lead{color:var(--muted);margin:0 0 20px}
+a{color:var(--accent)}
+.note{background:var(--accent-soft);border-left:4px solid var(--accent);padding:12px 16px;border-radius:6px;margin:20px 0}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:.95rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+td.num{white-space:nowrap;font-variant-numeric:tabular-nums}
+.table-wrap{overflow-x:auto}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 20px}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
+.serp{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.serp .tag{font-size:.75rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.serp.before .tag{color:var(--old)} .serp.after .tag{color:var(--good)}
+.serp .url{color:var(--serp-url);font-size:.85rem;margin-top:6px;overflow-wrap:anywhere}
+.serp .t{color:var(--serp-title);font-size:1.1rem;line-height:1.3;margin:2px 0 4px}
+.serp .d{color:var(--serp-text);font-size:.9rem;line-height:1.45}
+.pages{list-style:none;padding:0;margin:0}
+.pages li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:0 0 12px;max-width:none}
+.pages .links{font-size:.9rem;margin-top:6px}
+.pages .links a{margin-right:14px}
+ol.q li{margin-bottom:10px}
+.cta{display:inline-block;background:var(--accent);color:var(--card);text-decoration:none;font-weight:600;padding:10px 16px;border-radius:8px}
+.hint{color:var(--muted);font-size:.9rem}
+footer{margin-top:48px;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Luft-Tec kodulehe väikesed muudatused</h1>
+<p class="lead">Ettepanek ülevaatamiseks · 9. oktoober 2026</p>
+</header>
+
+<div class="note">See on <strong>näidis</strong>, mitte päris leht: täpne koopia luft-tec.ee lehest, kuhu on sisse viidud allpool kirjeldatud muudatused. <strong>Päris lehel pole midagi muudetud.</strong> Vormid ja ostukorv näidises ei tööta.</div>
+<p><a class="cta" href="../vordlus/index.html">Vaata enne ja pärast kõrvuti →</a><br><span class="hint">Vasakul on praegune leht, paremal muudetud. Kerimisel liiguvad mõlemad koos, lehte saab vahetada ülevalt menüüst.</span></p>
+
+<section>
+<h2>Miks</h2>
+<p>Google Search Console'i andmetel (9.09–6.10.2026) näitab Google teie lehte juba mitmele teenuseotsingule esimesel või teisel leheküljel, aga peaaegu keegi ei kliki. Peaaegu kõik klikid tulevad praegu nendelt, kes otsivad otse nime järgi („luft tec“).</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Otsing Google'is</th><th>Kordi näidatud</th><th>Keskmine koht</th><th>Klikke</th></tr></thead>
+<tbody>
+<tr><td>ventilatsiooni paigaldus</td><td class="num">89</td><td class="num">13,8</td><td class="num">1</td></tr>
+<tr><td>ventilatsioonisüsteemide hooldus</td><td class="num">76</td><td class="num">10,0</td><td class="num">0</td></tr>
+<tr><td>vent puhastus pärnus</td><td class="num">58</td><td class="num">8,1</td><td class="num">0</td></tr>
+<tr><td>Pärnu + ventilatsioon (kõik koos)</td><td class="num">~115</td><td class="num">5–25</td><td class="num">0</td></tr>
+</tbody>
+</table>
+</div>
+<p>Põhjused on lihtsad. Lehtede pealkirjades ja tekstides pole sõna „Pärnu“, avalehel puudub pealkiri (H1), paigaldusleht on väga lühike ja lehed ei viita üksteisele. Allolevad muudatused parandavad just neid asju. Uusi lehti me ei loo ja kujundust ei muuda.</p>
+</section>
+
+<section>
+<h2>Kuidas Google'i tulemus muutub</h2>
+<p>Google kuvab otsingutulemuses lehe pealkirja ja lühikirjelduse. Need on praegu üldised. Uued ütlevad, mida te teete ja kus.</p>
+
+<h3>Avaleht</h3>
+<div class="pair">
+<div class="serp before"><div class="tag">Praegu</div><div class="url">www.luft-tec.ee</div><div class="t">Ventilatsiooni paigaldus hooldus remont ja rasvakanalite puhastus</div><div class="d">Ventilatsiooni paigaldus, hooldus, remont ja köökide rasvakanalite puhastus. Hooldatud ventilatsioonisüsteemid ja puhtad rasvakanalid</div></div>
+<div class="serp after"><div class="tag">Uus</div><div class="url">www.luft-tec.ee</div><div class="t">Ventilatsiooni puhastus, hooldus ja remont Pärnus | Luft-Tec OÜ</div><div class="d">Pärnu ventilatsioonifirma: ventilatsioonisüsteemide puhastus, hooldus, remont ja paigaldus ning köökide rasvakanalite puhastus. Töötame üle Eesti. HEIKO ametlik edasimüüja.</div></div>
+</div>
+
+<h3>Ventilatsioonisüsteemide puhastus</h3>
+<div class="pair">
+<div class="serp before"><div class="tag">Praegu</div><div class="url">www.luft-tec.ee › ventilatsioonisusteemide-puhastus</div><div class="t">Ventilatsioonisüsteemide puhastus</div><div class="d">Ventilatsioonisüsteemide regulaarne puhastamine aitab pikendada nende eluiga. Tolm ja mustus võivad kahjustada süsteemi komponente</div></div>
+<div class="serp after"><div class="tag">Uus</div><div class="url">www.luft-tec.ee › ventilatsioonisusteemide-puhastus</div><div class="t">Ventilatsiooni puhastus Pärnus ja üle Eesti | Luft-Tec OÜ</div><div class="d">Ventilatsioonisüsteemide puhastus Bos trossi- ja harjamasinatega. Töö lõpus akt koos enne/pärast fotodega, mis sobib Päästeametile tõenduseks.</div></div>
+</div>
+
+<h3>Ventilatsioonisüsteemide hooldus</h3>
+<div class="pair">
+<div class="serp before"><div class="tag">Praegu</div><div class="url">www.luft-tec.ee › ventilatsioonisusteemide-hooldus</div><div class="t">Ventilatsioonisüsteemide hooldus ja remont</div><div class="d">Päästeamet määrab kindlaks ventilatsioonisüsteemide hoolduse teostamise nõuded, mille täitmist tuleb järgida</div></div>
+<div class="serp after"><div class="tag">Uus</div><div class="url">www.luft-tec.ee › ventilatsioonisusteemide-hooldus</div><div class="t">Ventilatsioonisüsteemide hooldus ja remont Pärnus | Luft-Tec OÜ</div><div class="d">Ventilatsiooni hooldus Päästeameti nõuete järgi: seadme puhastus, filtrite vahetus, tuletõkkeklappide, täiturite ja temperatuuride kontroll ning väiksemad remonditööd.</div></div>
+</div>
+
+<h3>Ventilatsioonisüsteemide paigaldus</h3>
+<div class="pair">
+<div class="serp before"><div class="tag">Praegu</div><div class="url">www.luft-tec.ee › ventilatsioonisusteemide-paigaldus</div><div class="t">Ventilatsioonisüsteemide paigaldus</div><div class="d">Pakume ka ventilatsioonisüsteemide paigaldust. Oleme spetsialiseerunud ventilatsioonisüsteemide paigaldamisele</div></div>
+<div class="serp after"><div class="tag">Uus</div><div class="url">www.luft-tec.ee › ventilatsioonisusteemide-paigaldus</div><div class="t">Ventilatsiooni paigaldus eramutesse ja ärihoonetesse | Luft-Tec OÜ</div><div class="d">Ventilatsioonisüsteemide paigaldus ja ümberehitus eramutes ning ärihoonete renoveerimisel: automaatika ehitus, ATS-väljalülituse ühendamine, esmane käivitamine ja mõõdistamine.</div></div>
+</div>
+
+<p>Samamoodi muutuvad rasvakanalite lehe („Köökide rasvakanalite puhastus | Luft-Tec OÜ“) ja teenuste lehe pealkiri ning kirjeldus.</p>
+</section>
+
+<section>
+<h2>Mis lehtedel muutus</h2>
+<p>Kõik uued laused põhinevad sellel, mis teie lehel juba kirjas on. Midagi pole juurde mõeldud.</p>
+<ul class="pages">
+<li><strong>Avaleht</strong>: suur tekst pildi peal on nüüd lehe pealkiri: „Ventilatsiooni puhastus, hooldus ja paigaldus Pärnus ja üle Eesti“. Esimesse lõiku on lisatud lause: asume Pärnus, teenindame üle Eesti, Lätis, Soomes ja Rootsis.
+<div class="links"><a href="../vordlus/index.html?leht="><strong>Enne/pärast kõrvuti</strong></a><a href="../index.html">Vaata näidist</a><a href="https://www.luft-tec.ee/">Praegune leht</a></div></li>
+<li><strong>Ventilatsioonisüsteemide paigaldus</strong>: uus plokk „Mida paigaldus sisaldab“ (eramud ja ärihooned, renoveerimine, automaatika, ATS, käivitamine, mõõdistamine), lisaks „Kus töötame“ ja kontakt.
+<div class="links"><a href="../vordlus/index.html?leht=ventilatsioonisusteemide-paigaldus%2F"><strong>Enne/pärast kõrvuti</strong></a><a href="../ventilatsioonisusteemide-paigaldus/index.html">Vaata näidist</a><a href="https://www.luft-tec.ee/ventilatsioonisusteemide-paigaldus/">Praegune leht</a></div></li>
+<li><strong>Ventilatsioonisüsteemide puhastus</strong>: lõppu on lisatud „Kus töötame“, viited hooldusele ja rasvakanalitele ning kontakt.
+<div class="links"><a href="../vordlus/index.html?leht=ventilatsioonisusteemide-puhastus%2F"><strong>Enne/pärast kõrvuti</strong></a><a href="../ventilatsioonisusteemide-puhastus/index.html">Vaata näidist</a><a href="https://www.luft-tec.ee/ventilatsioonisusteemide-puhastus/">Praegune leht</a></div></li>
+<li><strong>Ventilatsioonisüsteemide hooldus</strong>: lisatud „Kui tihti hooldada?“ koos viitega KKK-le, „Kus töötame“ ja kontakt.
+<div class="links"><a href="../vordlus/index.html?leht=ventilatsioonisusteemide-hooldus%2F"><strong>Enne/pärast kõrvuti</strong></a><a href="../ventilatsioonisusteemide-hooldus/index.html">Vaata näidist</a><a href="https://www.luft-tec.ee/ventilatsioonisusteemide-hooldus/">Praegune leht</a></div></li>
+<li><strong>KKK</strong>: kolme vastuse juurde on lisatud link vastavale teenuselehele. Praegu konkureerib KKK Google'is hoolduslehega, nüüd on selge, kumb on teenuse leht.
+<div class="links"><a href="../vordlus/index.html?leht=kkk%2F"><strong>Enne/pärast kõrvuti</strong></a><a href="../kkk/index.html">Vaata näidist</a><a href="https://www.luft-tec.ee/kkk/">Praegune leht</a></div></li>
+<li><strong>Teenused</strong>: pealkiri on nüüd „Teenused“ (enne „2023 aastast pakub…“) ja ventilatsiooniteenused on lingid oma lehtedele.
+<div class="links"><a href="../vordlus/index.html?leht=teenused%2F"><strong>Enne/pärast kõrvuti</strong></a><a href="../teenused/index.html">Vaata näidist</a><a href="https://www.luft-tec.ee/teenused/">Praegune leht</a></div></li>
+<li><strong>Kõik lehed</strong>: firmanimi on igal pool kirjutatud „Luft-Tec OÜ“ (oli „Luft Tec OÜ“ ilma sidekriipsuta).</li>
+</ul>
+</section>
+
+<section>
+<h2>Nähtamatud tehnilised muudatused</h2>
+<p>Neid näidises ei näe. Päris lehel tehakse need WordPressi seadetes.</p>
+<ul>
+<li>Avalehele lisatakse Google'i jaoks masinloetav ettevõtteinfo: nimi, aadress, telefon ja teeninduspiirkond.</li>
+<li>Tänuleht <code>/success/</code> ja testsilt „test-product“ eemaldatakse Google'i otsingust. Praegu näitab Google neid otsingutulemustes.</li>
+</ul>
+</section>
+
+<section>
+<h2>Küsimused teile</h2>
+<ol class="q">
+<li><strong>Topelttoode poes.</strong> „ROSA Black 4,8 kW“ on poes kaks korda, hinnaga 605 € ja 685 €. Kumb on õige? Teise saaks eemaldada. Lisaks on „Torulõikur 75 mm“ hind 1,00 €. Kas see on testtoode?</li>
+<li><strong>Kustutatud tooted.</strong> Google on varem näinud HEIKO Thermal soojuspumpade ja Ventilus Compact 250 lehti, mis nüüd annavad vea „lehte ei leitud“. Kas need tooted tulevad poodi tagasi?</li>
+<li><strong>Menüü nimi.</strong> Menüüs on paigalduse nimi „Väikesemahuline süsteemide paigaldus“. Kas see on teadlik piirang, või võib kirjutada lihtsalt „Ventilatsiooni paigaldus“?</li>
+<li><strong>E-post.</strong> Lehel on ainult Peebu ja Andrese isiklikud aadressid. Kas soovite lehele ühist aadressi (nt info@)?</li>
+</ol>
+</section>
+
+<footer>
+<p>Kui muudatused sobivad, viime need päris lehele sisse WordPressi kaudu. Kujundus ega aadressid ei muutu. Tulemust kontrollime Google Search Console'is 4–6 nädala pärast.</p>
+</footer>
+</main>
+</body>
+</html>
