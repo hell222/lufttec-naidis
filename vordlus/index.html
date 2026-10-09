@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Luft-Tec enne ja pärast</title>
+<meta name="description" content="Luft-Tec lehe praegune ja muudetud versioon kõrvuti, sünkroonse kerimisega.">
+<style>
+:root{
+  --bg:#eef1f5; --bar:#ffffff; --text:#1d2430; --muted:#5b6574; --line:#d5dbe3;
+  --accent:#1f3a5f; --old:#9a3b3b; --new:#1c7c54;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1318; --bar:#1b2129; --text:#e6eaf0; --muted:#9aa5b4; --line:#2c3440;
+    --accent:#8fb3e0; --old:#e08a8a; --new:#5cc79a;
+  }
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{display:flex;flex-direction:column;background:var(--bg);color:var(--text);font:14px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:8px 16px;background:var(--bar);border-bottom:1px solid var(--line)}
+header h1{font-size:15px;margin:0;font-weight:700}
+header label{display:flex;align-items:center;gap:6px;color:var(--muted)}
+select{font:inherit;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bar);color:var(--text)}
+header a{color:var(--accent)}
+.spacer{flex:1}
+.toggle{display:none;gap:0}
+.toggle button{font:inherit;padding:5px 12px;border:1px solid var(--line);background:var(--bar);color:var(--text);cursor:pointer}
+.toggle button:first-child{border-radius:6px 0 0 6px}
+.toggle button:last-child{border-radius:0 6px 6px 0;border-left:0}
+.toggle button[aria-pressed="true"]{background:var(--accent);color:var(--bar);border-color:var(--accent)}
+.frames{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;min-height:0}
+.pane{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bar);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.label{padding:6px 10px;border-bottom:1px solid var(--line);display:flex;gap:8px;align-items:baseline;min-width:0}
+.label b{font-size:12px;letter-spacing:.05em;flex:none}
+#paneOld .label b{color:var(--old)} #paneNew .label b{color:var(--new)}
+.label span{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+iframe{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:900px){
+  .frames{grid-template-columns:1fr}
+  .toggle{display:flex}
+  .pane[hidden]{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Luft-Tec · enne ja pärast</h1>
+  <label>Leht
+    <select id="page">
+      <option value="">Avaleht</option>
+      <option value="ventilatsioonisusteemide-paigaldus/">Ventilatsioonisüsteemide paigaldus</option>
+      <option value="ventilatsioonisusteemide-puhastus/">Ventilatsioonisüsteemide puhastus</option>
+      <option value="ventilatsioonisusteemide-hooldus/">Ventilatsioonisüsteemide hooldus</option>
+      <option value="kkk/">KKK</option>
+      <option value="teenused/">Teenused</option>
+      <option value="kookide-rasvakanalite-puhastus/">Köökide rasvakanalite puhastus</option>
+    </select>
+  </label>
+  <label><input type="checkbox" id="sync" checked> Keri koos</label>
+  <div class="toggle" role="group" aria-label="Näita versiooni">
+    <button type="button" id="showOld" aria-pressed="false">Enne</button>
+    <button type="button" id="showNew" aria-pressed="true">Pärast</button>
+  </div>
+  <span class="spacer"></span>
+  <a href="../muudatused/index.html">Muudatuste ülevaade</a>
+</header>
+<main class="frames">
+  <section class="pane" id="paneOld" aria-label="Enne">
+    <div class="label"><b>ENNE · praegune leht</b><span id="titleOld"></span></div>
+    <iframe id="old" title="Praegune leht"></iframe>
+  </section>
+  <section class="pane" id="paneNew" aria-label="Pärast">
+    <div class="label"><b>PÄRAST · ettepanek</b><span id="titleNew"></span></div>
+    <iframe id="new" title="Muudetud leht"></iframe>
+  </section>
+</main>
+<script>
+(function(){
+  var base = location.pathname.replace(/vordlus\/(index\.html)?$/, '');
+  var frames = {old: document.getElementById('old'), new: document.getElementById('new')};
+  var select = document.getElementById('page');
+  var sync = document.getElementById('sync');
+  var ignoreUntil = {old: 0, new: 0};
+  var lastY = 0;
+  var narrow = window.matchMedia('(max-width: 900px)');
+
+  function src(side, key){ return base + (side === 'old' ? 'enne/' : '') + key + 'index.html'; }
+  function keyOf(side){
+    try {
+      var p = decodeURIComponent(frames[side].contentWindow.location.pathname);
+      var prefix = base + (side === 'old' ? 'enne/' : '');
+      if (p.indexOf(prefix) !== 0) return null;
+      return p.slice(prefix.length).replace(/index\.html.*$/, '');
+    } catch (e) { return null; }
+  }
+  function other(side){ return side === 'old' ? 'new' : 'old'; }
+
+  function load(key){
+    frames.old.src = src('old', key);
+    frames.new.src = src('new', key);
+    select.value = key;
+    history.replaceState(null, '', '?leht=' + encodeURIComponent(key));
+  }
+
+  function follow(to){
+    if (!sync.checked) return;
+    ignoreUntil[to] = performance.now() + 150;
+    frames[to].contentWindow.scrollTo({top: lastY, behavior: 'instant'});
+  }
+
+  function onLoad(side){
+    var w = frames[side].contentWindow;
+    lastY = 0;
+    var t = '';
+    try { t = w.document.title; } catch (e) {}
+    document.getElementById(side === 'old' ? 'titleOld' : 'titleNew').textContent = t ? 'Google\'i pealkiri: ' + t : '';
+    w.addEventListener('scroll', function(){
+      if (performance.now() < ignoreUntil[side]) return;
+      lastY = w.scrollY;
+      follow(other(side));
+    }, {passive: true});
+    // a link clicked inside one frame: open the same page in the other one
+    var k = keyOf(side), ko = keyOf(other(side));
+    if (k !== null && ko !== null && k !== ko) {
+      frames[other(side)].src = src(other(side), k);
+    }
+    if (k !== null) {
+      if ([].some.call(select.options, function(o){ return o.value === k; })) select.value = k;
+      history.replaceState(null, '', '?leht=' + encodeURIComponent(k));
+    }
+  }
+  frames.old.addEventListener('load', function(){ onLoad('old'); });
+  frames.new.addEventListener('load', function(){ onLoad('new'); });
+  select.addEventListener('change', function(){ load(select.value); });
+
+  function show(side){
+    document.getElementById('paneOld').hidden = narrow.matches && side !== 'old';
+    document.getElementById('paneNew').hidden = narrow.matches && side !== 'new';
+    document.getElementById('showOld').setAttribute('aria-pressed', side === 'old');
+    document.getElementById('showNew').setAttribute('aria-pressed', side === 'new');
+    if (narrow.matches) requestAnimationFrame(function(){ follow(side); });
+  }
+  var current = 'new';
+  document.getElementById('showOld').addEventListener('click', function(){ current = 'old'; show('old'); });
+  document.getElementById('showNew').addEventListener('click', function(){ current = 'new'; show('new'); });
+  narrow.addEventListener('change', function(){ show(current); });
+  show(current);
+
+  var q = new URLSearchParams(location.search).get('leht');
+  load(q !== null ? q : '');
+})();
+</script>
+</body>
+</html>
